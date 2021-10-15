@@ -21,7 +21,7 @@ a, b = st.columns([1, 10])
 
 with a:
     st.text("")
-    st.image("Twitter-Analyser/logoOfficial.png", width=50)
+    st.image("logoOfficial.png", width=50)
 with b:
     st.title("Twitter Sentiment Analyzer")
 
@@ -71,7 +71,7 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
     st.markdown("")
 
     # st.image("01.png", width=650)
-    st.image("Twitter-Analyser/01.png", width=650)
+    st.image("01.png", width=650)
 
     st.markdown(
         """
@@ -80,7 +80,7 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
     )
 
     st.markdown("")
-    st.image("Twitter-Analyser/02.png", width=650)
+    st.image("02.png", width=650)
     # st.image("02.png", width=650)
 
     st.markdown(
