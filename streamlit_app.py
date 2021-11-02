@@ -338,7 +338,8 @@ with st.form(key="my_form"):
 
         return tweets
 
-    @st.cache(**cache_args)
+    @st.experimental_memo
+    # @st.cache(**cache_args)
     def munge_the_numbers(
         tweets, timestamp1, timestampN
     ):  # Timestamps are just for cache-busting.
