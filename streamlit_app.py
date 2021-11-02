@@ -297,8 +297,8 @@ with st.form(key="my_form"):
     )
 
     
-    @st.experimental_memo
-    # @st.cache(ttl=60 * 60, **cache_args)
+    # @st.experimental_memo
+    @st.cache(ttl=60 * 60, **cache_args)
     def search_twitter(
         query_terms,
         days_ago,
@@ -338,8 +338,8 @@ with st.form(key="my_form"):
 
         return tweets
 
-    @st.experimental_memo
-    # @st.cache(**cache_args)
+    # @st.experimental_memo
+    @st.cache(**cache_args)
     def munge_the_numbers(
         tweets, timestamp1, timestampN
     ):  # Timestamps are just for cache-busting.
