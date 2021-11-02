@@ -296,7 +296,9 @@ with st.form(key="my_form"):
         },
     )
 
-    @st.cache(ttl=60 * 60, **cache_args)
+    
+    @st.experimental_memo
+    # @st.cache(ttl=60 * 60, **cache_args)
     def search_twitter(
         query_terms,
         days_ago,
