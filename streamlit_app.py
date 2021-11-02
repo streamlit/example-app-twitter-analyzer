@@ -23,7 +23,7 @@ with a:
     st.text("")
     st.image("logoOfficial.png", width=50)
 with b:
-    st.title("Twitter Sentiment Analyzer")
+    st.title("Twitter Sentiment Analyzer - TEST")
 
 st.write("Type in a term to view the latest Twitter sentiment on that term.")
 
