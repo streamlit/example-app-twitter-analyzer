@@ -1,10 +1,13 @@
-# Streamlit Twitter thingymajig
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/streamlit/example-app-twitter-analyzer/main)
+
+
+# Twitter Analyzer
 
 A tweet analysis dashboard written in Streamlit!
 
-See it in action:
+<img src="https://user-images.githubusercontent.com/27242399/140505895-3b2e3662-152c-456b-98c8-1c3ceb4982bd.png" width="450"/>
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/tvst/streamlit-twitter-thingymajig/main)
+See it in action:
 
 # Trying this in your own machine
 
