@@ -13,6 +13,8 @@ import streamlit as st
 import time
 import tweepy
 
+st.set_page_config(page_icon="🐤", page_title="Twitter Sentiment Analyzer")
+
 st.write('<base target="_blank">', unsafe_allow_html=True)
 
 prev_time = [time.time()]
@@ -23,7 +25,7 @@ with a:
     st.text("")
     st.image("logoOfficial.png", width=50)
 with b:
-    st.title("Twitter Sentiment Analyzer - TEST")
+    st.title("Twitter Sentiment Analyzer")
 
 st.write("Type in a term to view the latest Twitter sentiment on that term.")
 
