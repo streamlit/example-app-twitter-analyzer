@@ -330,7 +330,7 @@ with st.form(key="my_form"):
         tweets = UncacheableList(
             tweepy.Cursor(
                 # TODO: Set up Premium search?
-                twitter_api.search,
+                twitter_api.search_tweets,
                 q=query_str,
                 lang="en",
                 count=limit,
