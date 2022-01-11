@@ -33,7 +33,7 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
 
     st.markdown(
         """
-    # How to add your Twitter API credentials on your own machine
+    ### How to add your Twitter API credentials on your own machine
     To try this app locally, you first need to specify your Twitter API credentials:
     1.  Create a subfolder  _in this repo_, called  `.streamlit`
     2.  Create a file at  `.streamlit/secrets.toml`  file with the following body:"""
@@ -64,7 +64,7 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
 
     st.markdown(
         """
-    # How to add your Twitter API credentials on your deployed app
+    ### How to add your Twitter API credentials on your deployed app
     To try this app in Streamlit Sharing, you need to add your Twitter API credentials in the Secrets manager:
     1.  Go to your app dashboard at `https://share.streamlit.io/`
     2.  Find your app and click on `Edit secrets`:"""
