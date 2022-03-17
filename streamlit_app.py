@@ -450,7 +450,7 @@ results = munge_the_numbers(tweets, tweets[0].created_at, tweets[-1].created_at)
 # --------------------------------------------------------------------------------------------------
 # Draw results
 
-st.write("## ** Sentiment from the most recent **", len(tweets)," **tweets**")
+st.markdown("## ** Sentiment from the most recent **", len(tweets)," **tweets**")
 
 sentiment_df = pd.DataFrame(results["sentiment_list"])
 
