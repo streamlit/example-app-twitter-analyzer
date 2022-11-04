@@ -561,7 +561,7 @@ st.altair_chart(
 
 with st.expander("Show raw data", expanded=False):
 
-    st.markdown("## ** Raw data **")
+    st.markdown("## Raw data")
     st.markdown("")
 
     def draw_count(label, df, init_filter_divider):
