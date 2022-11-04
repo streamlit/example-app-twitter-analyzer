@@ -33,10 +33,11 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
 
     st.markdown(
         """
-    ### How to add your Twitter API credentials on your own machine
-    To try this app locally, you first need to specify your Twitter API credentials:
-    1.  Create a subfolder  _in this repo_, called  `.streamlit`
-    2.  Create a file at  `.streamlit/secrets.toml`  file with the following body:"""
+        ### How to add your Twitter API credentials on your own machine
+        To try this app locally, you first need to specify your Twitter API credentials:
+        1.  Create a subfolder  _in this repo_, called  `.streamlit`
+        2.  Create a file at  `.streamlit/secrets.toml`  file with the following body:
+        """
     )
 
     st.markdown("")
@@ -51,23 +52,24 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
 
     st.markdown(
         """
-    3.  Go to the  [Twitter Developer Portal](https://developer.twitter.com/en/portal), create or select an existing project + app, then go to the app's "Keys and Tokens" tab to generate your "Consumer Keys".
-    4.  Copy and paste you key and secret into the file above.
-    5.  Now you can run you Streamlit app as usual:
-        
-        ```
-        streamlit run streamlit_app.py
-        ```
-        
+        3.  Go to the  [Twitter Developer Portal](https://developer.twitter.com/en/portal), create or select an existing project + app, then go to the app's "Keys and Tokens" tab to generate your "Consumer Keys".
+        4.  Copy and paste you key and secret into the file above.
+        5.  Now you can run you Streamlit app as usual:
+
+            ```
+            streamlit run streamlit_app.py
+            ```
+
         """
     )
 
     st.markdown(
         """
-    ### How to add your Twitter API credentials on your deployed app
-    To try this app in Streamlit Sharing, you need to add your Twitter API credentials in the Secrets manager:
-    1.  Go to your app dashboard at `https://share.streamlit.io/`
-    2.  Find your app and click on `Edit secrets`:"""
+        ### How to add your Twitter API credentials on your deployed app
+        To try this app in Streamlit Sharing, you need to add your Twitter API credentials in the Secrets manager:
+        1.  Go to your app dashboard at `https://share.streamlit.io/`
+        2.  Find your app and click on `Edit secrets`:
+        """
     )
 
     st.markdown("")
@@ -77,8 +79,8 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
 
     st.markdown(
         """
-    3.  Copy and paste you key and secret into the box below:
-    """
+        3.  Copy and paste you key and secret into the box below:
+        """
     )
 
     st.markdown("")
@@ -87,8 +89,7 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
 
     st.markdown(
         """
-    4.  Press `Save`
-       
+        4.  Press `Save`
         """
     )
 
@@ -298,7 +299,7 @@ with st.form(key="my_form"):
         },
     )
 
-    
+
     # @st.experimental_memo
     @st.cache(ttl=60 * 60, **cache_args)
     def search_twitter(
