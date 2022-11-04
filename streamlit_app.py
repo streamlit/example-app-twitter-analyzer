@@ -522,7 +522,7 @@ with st.expander("ℹ️ How to interpret the results", expanded=False):
     st.write("")
 
 
-st.markdown("## ** Top terms **")
+st.markdown("## Top terms")
 
 terms = pd.concat(
     [
