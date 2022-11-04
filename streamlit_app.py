@@ -354,7 +354,7 @@ with st.form(key="my_form"):
         sentiment_list = []
 
         SentimentListItem = namedtuple(
-            "SentimentListItem", ("date", "polarity", "subjectivity", "url")
+            "SentimentListItem", ("date", "polarity", "subjectivity", "text", "url")
         )
 
         for tweet in tweets:
@@ -369,6 +369,7 @@ with st.form(key="my_form"):
                     tweet.created_at,
                     blob.sentiment.polarity,
                     blob.sentiment.subjectivity,
+                    tweet.text,
                     get_tweet_url(tweet),
                 )
             )
@@ -486,10 +487,11 @@ avg_subjectivity = chart.mark_line(interpolate="catmull-rom", tooltip=True,).enc
     color=alt.Color(value=subjectivity_color),
 )
 
-subjectivity_values = chart.mark_point(tooltip=True, size=75, filled=True,).encode(
+subjectivity_values = chart.mark_point(size=75, filled=True,).encode(
     x=alt.X("date:T", timeUnit=timeUnit, title="date"),
     y=alt.Y("subjectivity:Q", title="subjectivity"),
     color=alt.Color(value=subjectivity_color + "88"),
+    tooltip=alt.Tooltip(["date", "polarity", "text"]),
     href="url",
 )
 
@@ -501,10 +503,11 @@ avg_polarity = chart.mark_line(interpolate="catmull-rom", tooltip=True,).encode(
     color=alt.Color(value=polarity_color),
 )
 
-polarity_values = chart.mark_point(tooltip=True, size=75, filled=True,).encode(
+polarity_values = chart.mark_point(size=75, filled=True,).encode(
     x=alt.X("date:T", timeUnit=timeUnit, title="date"),
     y=alt.Y("polarity:Q", title="polarity"),
     color=alt.Color(value=polarity_color + "88"),
+    tooltip=alt.Tooltip(["date", "polarity", "text"]),
     href="url",
 )
 
