@@ -2,16 +2,25 @@ from collections import defaultdict, namedtuple
 from htbuilder import div, big, h2, styles
 from htbuilder.units import rem
 from math import floor
+
+from streamlit import session_state
 from textblob import TextBlob
 import altair as alt
 import datetime
-import functools
 import pandas as pd
 import re
-import secrets_beta
 import streamlit as st
 import time
 import tweepy
+
+
+oauth2_user_handler = tweepy.OAuth2UserHandler(
+    client_id=st.secrets['twitter']['client_id'],
+    redirect_uri=st.secrets['twitter']['redirect_url'],
+    scope=["tweet.read"],
+    # Client Secret is only necessary if using a confidential client
+    client_secret=st.secrets['twitter']['client_secret'],
+)
 
 st.set_page_config(page_icon="🐤", page_title="Twitter Sentiment Analyzer")
 
@@ -74,7 +83,6 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
 
     st.markdown("")
 
-    # st.image("01.png", width=650)
     st.image("01.png", width=650)
 
     st.markdown(
@@ -85,7 +93,6 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
 
     st.markdown("")
     st.image("02.png", width=650)
-    # st.image("02.png", width=650)
 
     st.markdown(
         """
@@ -98,9 +105,18 @@ with st.expander("ℹ️ Setup instructions", expanded=False):
 
 st.write("")
 
-with st.form(key="my_form"):
 
-    @st.cache
+if 'state' in st.query_params and 'code' in st.query_params:
+    access_token = oauth2_user_handler.fetch_token(
+        f"http://localhost:8501?state={st.query_params['state']}&code={st.query_params['code']}"
+    )
+    st.session_state['access_token'] = access_token
+
+    st.query_params.pop('state')
+    st.query_params.pop('code')
+
+with st.form(key="my_form"):
+    @st.cache_resource
     def initial_setup():
         from textblob.download_corpora import download_all
         download_all()
@@ -108,8 +124,15 @@ with st.form(key="my_form"):
 
     initial_setup()
 
-    auth = tweepy.AppAuthHandler(**st.secrets["twitter"])
-    twitter_api = tweepy.API(auth)
+
+    if "access_token" not in session_state:
+        st.link_button(
+            url= oauth2_user_handler.get_authorization_url(),
+            label=f'Login to twitter'
+        )
+    else:
+        client = tweepy.Client(st.session_state['access_token'])
+
 
     if "tweets" not in st.session_state:
         # These are all for debugging.
@@ -301,7 +324,7 @@ with st.form(key="my_form"):
 
 
     # @st.experimental_memo
-    @st.cache(ttl=60 * 60, **cache_args)
+    @st.cache_data(ttl=60 * 60, **cache_args)
     def search_twitter(
         query_terms,
         days_ago,
@@ -331,7 +354,7 @@ with st.form(key="my_form"):
         tweets = UncacheableList(
             tweepy.Cursor(
                 # TODO: Set up Premium search?
-                twitter_api.search_tweets,
+                client.search_all_tweets,
                 q=query_str,
                 lang="en",
                 count=limit,
@@ -342,7 +365,7 @@ with st.form(key="my_form"):
         return tweets
 
     # @st.experimental_memo
-    @st.cache(**cache_args)
+    @st.cache_data(**cache_args)
     def munge_the_numbers(
         tweets, timestamp1, timestampN
     ):  # Timestamps are just for cache-busting.
