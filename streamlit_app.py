@@ -108,7 +108,7 @@ st.write("")
 
 if 'state' in st.query_params and 'code' in st.query_params:
     access_token = oauth2_user_handler.fetch_token(
-        f"http://localhost:8501?state={st.query_params['state']}&code={st.query_params['code']}"
+        f"{st.secrets['twitter']['redirect_url']}?state={st.query_params['state']}&code={st.query_params['code']}"
     )
     st.session_state['access_token'] = access_token
 
