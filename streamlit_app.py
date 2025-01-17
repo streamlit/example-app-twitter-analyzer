@@ -14,13 +14,17 @@ import time
 import tweepy
 
 
-oauth2_user_handler = tweepy.OAuth2UserHandler(
-    client_id=st.secrets['twitter']['client_id'],
-    redirect_uri=st.secrets['twitter']['redirect_url'],
-    scope=["tweet.read"],
-    # Client Secret is only necessary if using a confidential client
-    client_secret=st.secrets['twitter']['client_secret'],
-)
+@st.cache_resource()
+def oauth2_user_handler_generator():
+    return tweepy.OAuth2UserHandler(
+        client_id=st.secrets['twitter']['client_id'],
+        redirect_uri=st.secrets['twitter']['redirect_url'],
+        scope=["tweet.read"],
+        # Client Secret is only necessary if using a confidential client
+        client_secret=st.secrets['twitter']['client_secret'],
+    )
+
+oauth2_user_handler = oauth2_user_handler_generator()
 
 st.set_page_config(page_icon="🐤", page_title="Twitter Sentiment Analyzer")
 
